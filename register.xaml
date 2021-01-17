@@ -1,0 +1,137 @@
+﻿<Window x:Class="JailManagementSystem.register"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JailManagementSystem"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{StaticResource MaterialDesignFont}"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="register" Height="555" Width="800" ResizeMode="NoResize">
+    <StackPanel Orientation="Vertical" Height="550">
+        <TextBlock Text="REGISTER (JAIL OFFICER)" FontSize="30" Margin="20" FontWeight="DemiBold"/>
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="10" Text="POSITION" FontSize="15" Grid.Column="0"/>
+            <ComboBox Margin="10" x:Name="position" Grid.Column="1">
+                <ComboBoxItem Content="Police Officer I"/>
+                <ComboBoxItem Content="Police Officer II"/>
+                <ComboBoxItem Content="Police Officer III"/>
+                <ComboBoxItem Content="Senior Police Officer I"/>
+                <ComboBoxItem Content="Senior Police Officer II"/>
+                <ComboBoxItem Content="Senior Police Officer III"/>
+                <ComboBoxItem Content="Senior Police Officer IV"/>
+                <ComboBoxItem Content="Police Non-Commissioned Officers"/>
+            </ComboBox>
+            
+        </Grid>
+
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="10" Text="LASTNAME" FontSize="15" Grid.Column="0"/>
+            <TextBox Margin="10" x:Name="lastname" FontSize="15" Grid.Column="1"/>
+            <TextBlock Margin="10" Text="FIRSTNAME" FontSize="15" Grid.Column="2"/>
+            <TextBox Margin="10" x:Name="firstname" FontSize="15" Grid.Column="3"/>
+        </Grid>
+
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="1.5*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="10" Text="MIDDLENAME" FontSize="15" Grid.Column="0"/>
+            <TextBox Margin="10" x:Name="middlename" FontSize="15" Grid.Column="1"/>
+            <TextBlock Margin="10" Text="ADDRESS" FontSize="15" Grid.Column="2"/>
+            <TextBox Margin="10" x:Name="address0" Grid.Column="3"/>
+            <StackPanel Orientation="Horizontal" Grid.Column="4" Margin="10">
+                <ComboBox x:Name="address1" Width="130">
+                    <ComboBoxItem Content="San Fernando, Pampanga"/>
+                    <ComboBoxItem Content="San Simon, Pampanga"/>
+                    <ComboBoxItem Content="Arayat, Pampanga"/>
+                    <ComboBoxItem Content="Macabebe, Pampanga"/>
+                    <ComboBoxItem Content="Candaba, Pampanga"/>
+                    <ComboBoxItem Content="Lubao, Pampanga"/>
+                    <ComboBoxItem Content="Guagua, Pampanga"/>
+                    <ComboBoxItem Content="San Luis, Pampanga"/>
+                    <ComboBoxItem Content="Masantol, Pampanga"/>
+                    <ComboBoxItem Content="Bacoor, Pampanga"/>
+                    <ComboBoxItem Content="Apalit, Pampanga"/>
+                    <ComboBoxItem Content="Porac, Pampanga"/>
+                    <ComboBoxItem Content="Angeles, Pampanga"/>
+                    <ComboBoxItem Content="Sasmuan, Pampanga"/>
+                    <ComboBoxItem Content="Sta.Rita, Pampanga"/>
+                    <ComboBoxItem Content="Minalin, Pampanga"/>
+                    <ComboBoxItem Content="Magalang, Pampanga"/>
+                    <ComboBoxItem Content="Mabalacat, Pampanga"/>
+                    <ComboBoxItem Content="Sto. Tomas, Pampanga"/>
+                    <ComboBoxItem Content="Florida Blanca, Pampanga"/>
+                    <ComboBoxItem Content="Sta. Ana, Pampanga"/>
+                    <ComboBoxItem Content="Mexico"/>
+                </ComboBox>
+            </StackPanel>
+        </Grid>
+
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="10" Text="BIRTHDATE" FontSize="15" Grid.Column="0"/>
+            <DatePicker SelectedDateChanged="birthdate_SelectedDateChanged" x:Name="birthdate" Margin="10" Grid.Column="1"/>
+            <TextBlock Margin="10" Text="AGE" FontSize="15" Grid.Column="2"/>
+            <TextBox Margin="10" IsEnabled="False" x:Name="age" FontSize="15" Grid.Column="3"/>
+        </Grid>
+
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="10" Text="USERNAME" FontSize="15" Grid.Column="0"/>
+            <TextBox Margin="10" x:Name="username" FontSize="15" Grid.Column="1"/>
+            <TextBlock Margin="10" Text="PASSOWRD" FontSize="15" Grid.Column="2"/>
+            <PasswordBox Margin="10" x:Name="xpassword" FontSize="15" Grid.Column="3"/>
+        </Grid>
+        <StackPanel Background="#FF575757" Margin="20">
+        <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.25*"/>
+                    <ColumnDefinition Width="1.25*"/>
+                    <ColumnDefinition Width=".45*"/>
+                    <ColumnDefinition Width="1.50*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="10" Text="CONFIRM PASSWORD" FontSize="15" Grid.Column="0"/>
+                <PasswordBox Margin="10" x:Name="password" FontSize="15" Grid.Column="1"/>
+                <Button Click="Button_Click_3" Grid.Column="2" ToolTip="ConFirm Password" Padding="0" Margin="10">
+                    <materialDesign:PackIcon Kind="Check" Height="30" Width="30"/>
+                </Button>
+                <Button x:Name="registers" IsEnabled="False" Click="Button_Click_1" Content="REGISTER" FontSize="18" FontWeight="Bold" Grid.Column="3" Margin="10"/>
+                <Button Click="Button_Click_2" Content="CANCEL" FontSize="18" FontWeight="Bold" Grid.Column="4" Margin="10"/>
+            </Grid>
+        </StackPanel>
+    </StackPanel>
+</Window>

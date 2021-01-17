@@ -1,0 +1,83 @@
+﻿<Window x:Class="JailManagementSystem.audit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JailManagementSystem"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{StaticResource MaterialDesignFont}"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Loaded="Window_Loaded"
+       Title="audit" Height="775" Width="1370" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+
+
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Storyboard x:Key="menuopen">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="gridmenu">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.25" Value="700"/>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="menuclose">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="gridmenu">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="700"/>
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.25" Value="0"/>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+        </ResourceDictionary>
+    </Window.Resources>
+    <StackPanel>
+        <Button Background="{x:Null}" Margin="1315,5,5,0" Padding="-20" Click="Button_Click_3">
+            <materialDesign:PackIcon Kind="Close"/>
+        </Button>
+
+
+        <!--main panel prisoner-->
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" >
+            <StackPanel Margin="20" Width="1340" x:Name="panel_prisoner" Orientation="Vertical" Visibility="{Binding ElementName=b_prisoner, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" >
+
+                <StackPanel.Background>
+                    <ImageBrush/>
+                </StackPanel.Background>
+
+                <!--PRISONER ADD DELETE SEARCH-->
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="AUDIT TRAIL" FontWeight="Bold" FontSize="35" Margin="10,10,45,10"/>
+                </Grid>
+                <!--PRISONER ADD DELETE SEARCH-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="62*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--DATAS OF ALL PRISONER-->
+                    <DataGrid  x:Name="datagrid_audit" Grid.ColumnSpan="3" Height="525" Margin="20">
+ 
+
+                    </DataGrid>
+
+
+                    <!--DATAS OF ALL PRISONER-->
+
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+        <!--main panel prisoner-->
+    </StackPanel>
+</Window>

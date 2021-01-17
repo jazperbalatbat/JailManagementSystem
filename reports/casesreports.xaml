@@ -1,0 +1,80 @@
+﻿<Window x:Class="JailManagementSystem.reports.casesreports"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JailManagementSystem.reports"
+        xmlns:rv ="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{StaticResource MaterialDesignFont}"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+  
+        Title="casesreports" Height="775" Width="1370" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Storyboard x:Key="menuopen">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="gridmenu">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.25" Value="700"/>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="menuclose">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="gridmenu">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="700"/>
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.25" Value="0"/>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+        </ResourceDictionary>
+    </Window.Resources>
+    <StackPanel>
+        <Button Background="{x:Null}" Margin="1315,5,5,0" Padding="-20" Click="Button_Click_3">
+            <materialDesign:PackIcon Kind="Close"/>
+        </Button>
+        <!--prison panel-->
+        <!--main panel prisoner-->
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="224" >
+            <StackPanel Margin="20" Width="1340" x:Name="panel_prisoner" Orientation="Vertical" Visibility="{Binding ElementName=b_prisoner, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="CASE REPORTS" FontWeight="Bold" FontSize="35" Margin="10,0,148,20"/>
+                </Grid>
+                <Grid x:Name="date" Visibility="Visible">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="134*"/>
+                        <ColumnDefinition Width="134*"/>
+                        <ColumnDefinition Width="134*"/>
+                        <ColumnDefinition Width="34*"/>
+                        <ColumnDefinition Width="79*"/>
+                        <ColumnDefinition Width="21*"/>
+                        <ColumnDefinition Width="134*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <TextBlock FontWeight="DemiBold" Grid.Column="0" Text="FROM" Grid.ColumnSpan="3" Margin="30,30,238,-30" />
+                    <DatePicker x:Name="from" Margin="151,21,189,-21" Grid.ColumnSpan="2"/>
+                    <TextBlock FontWeight="DemiBold" Text="TO" Margin="112,29,132,-29" Grid.Column="1"/>
+                    <DatePicker x:Name="to" Grid.ColumnSpan="2" Margin="174,21,144,-21" Grid.Column="1"/>
+                    <Button Click="Button_Click_1" Content="SHOW" Grid.ColumnSpan="4" Grid.Column="3" Margin="0,32,208,-32" />
+                </Grid>
+                <!--PRISONER ADD DELETE SEARCH-->
+            </StackPanel>
+        </ScrollViewer>
+        <WindowsFormsHost HorizontalAlignment="Left" Height="516" Width="1365" ChildChanged="WindowsFormsHost_ChildChanged">
+            <rv:ReportViewer x:Name="caseReportViewer"/>
+        </WindowsFormsHost>
+        <!--main panel prisoner-->
+        <!--prison panel-->
+    </StackPanel>
+</Window>

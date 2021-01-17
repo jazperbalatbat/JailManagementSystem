@@ -1,0 +1,1186 @@
+﻿<Window x:Class="JailManagementSystem.dashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JailManagementSystem"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{StaticResource MaterialDesignFont}"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="ADMIN" Height="775" Width="1370" Icon="images/jaillogo.png" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+
+    <!--main panel-->
+    <StackPanel Orientation="Vertical">
+        <Button Background="{x:Null}" Margin="1315,5,5,0" Padding="-20" Click="Button_Click_5">
+            <materialDesign:PackIcon Kind="Close"/>
+        </Button>
+        <Grid Height="710" Margin="0 10 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.38*" />
+                <ColumnDefinition Width="4*" />
+            </Grid.ColumnDefinitions>
+
+            <!--buttons of entities-->
+            <Grid Margin="10">
+
+                <materialDesign:Card Padding="10" Margin="0" Height="700">
+
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Name="main_position" Margin="0 0 70 0" Width="200" FontSize="25" FontWeight="DemiBold" HorizontalAlignment="Center"/>
+                            <Button x:Name="notifications" Padding="0" ToolTip="Notifications">
+                                <materialDesign:PackIcon Kind="Bell" Width="40" Height="32"/>
+                            </Button>
+                        </StackPanel>
+
+                        <Image Source="images/admin.png" Margin="0 20 0 20" Width="175" Height="130"/>
+                        <materialDesign:PopupBox Height="30" Grid.Column="3" Margin="180 -60 0 0">
+                            <materialDesign:PopupBox.ToggleContent>
+                                <materialDesign:PackIcon Kind="Settings" Width="40" Height="29" Foreground="White" />
+                            </materialDesign:PopupBox.ToggleContent>
+                            <StackPanel Orientation="Horizontal"  Background="Black">
+                                <Button ToolTip="Edit Information" Click="Button_Click_7">
+                                    <materialDesign:PackIcon Kind="Wrench" Width="25" Height="19" Foreground="White" />
+                                </Button>
+                                <Separator/>
+                                <Button Content="SIGN OUT" FontWeight="Bold" FontSize="11" Click="Button_Click_11"/>
+                            </StackPanel>
+                        </materialDesign:PopupBox>
+                        <StackPanel Orientation="Vertical">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" x:Name="main_id" Margin="5,5,0,3" FontSize="25" Height="22" RenderTransformOrigin="0.5,0.5"/>
+                                <TextBlock Grid.Column="1" x:Name="main_lastname" Margin="0,5,0,3" FontSize="25" Height="30"/>
+                                <TextBlock Grid.Column="2" x:Name="main_firstname" Margin="0,5,0,3" FontSize="25" Height="32"/>
+                            </Grid>
+
+                        </StackPanel>
+
+                        <Separator Margin="0 0 0 5"/>
+
+                        <Button Content="FILE MAINTENTANCE" Margin="5" FontSize="27" FontFamily="Segoe UI Semibold" Height="70" Click="Button_Click_2"/>
+                        <!--<Button x:Name="jailofficer_b" Click="Button_Click_8" Content="JAIL OFFICER" Margin="5" FontSize="22" FontFamily="Segoe UI Semibold" Height="40"/>-->
+
+                        <Button Click="Button_Click_14" Content="TRANSACTIONS" Margin="5" FontSize="30" FontFamily="Segoe UI Semibold" Height="70"/>
+
+                        <ScrollViewer  x:Name="transaction_list" Visibility="Collapsed" Height="200" VerticalScrollBarVisibility="Visible" CanContentScroll="True">
+                            <StackPanel Orientation="Vertical">
+                                <Button Content="PRISONER" Width="180" Margin="10" FontSize="18" FontFamily="Segoe UI Semibold" Height="40"/>
+                                <Button x:Name="visitor_log" Click="visitor_log_Click" Content="VISITOR" Width="180" Margin="10" FontSize="18" FontFamily="Segoe UI Semibold" Height="40"/>
+                                <Button Content="BAIL" Width="180" Margin="10" FontSize="18" FontFamily="Segoe UI Semibold" Height="40"/>
+                                <Button x:Name="cell_monitoring" Click="cell_monitoring_Click" Content="CELL MONITORING" Width="180" Margin="10" FontSize="18" FontFamily="Segoe UI Semibold" Height="40"/>
+                                <Button x:Name="hearing_schedule" Click="hearing_schedule_Click" Content="HEARING" Width="180" Margin="10" FontSize="18" FontFamily="Segoe UI Semibold" Height="40"/>
+                                <Button Content="PAROLE" Width="180" Margin="10" FontSize="18" FontFamily="Segoe UI Semibold" Height="40"/>
+                                <Button Content="CELL TRANSFER" Width="180" Margin="10" FontSize="18" FontFamily="Segoe UI Semibold" Height="40"/>
+                                <Button Content="JAIL TRANSFER" Width="180" Margin="10" FontSize="18" FontFamily="Segoe UI Semibold" Height="40"/>
+                            </StackPanel>
+
+                        </ScrollViewer>
+
+                        <Button Content="REPORTS" Margin="5" FontSize="30" FontFamily="Segoe UI Semibold" Height="70" Click="Button_Click_3"/>
+                        <Button x:Name="util" Click="Button_Click_12" Content="UTILITIES" Margin="5 5 5 20" FontSize="30" FontFamily="Segoe UI Semibold" Height="70"/>
+
+                    </StackPanel>
+                </materialDesign:Card>
+            </Grid>
+            <!--buttons of entities-->
+
+            <!--panel of entities-->
+            <Grid Grid.Column="1">
+
+                <!--file maintenance-->
+                <materialDesign:Card Padding="0" Margin="0 12 10 10" x:Name="b_prisoner" Visibility="Hidden">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" >
+                        <StackPanel Orientation="Vertical"  >
+                            <Button Width="47" Height="40" Margin="930 5 45 0" Background="{x:Null}" Click="Button_Click_4">
+                                <materialDesign:PackIcon Kind="Close"/>
+                            </Button>
+                            <TextBlock Margin="5" Text="FILE MAINTENANCE" FontSize="45" FontWeight="DemiBold" Width="988" />
+                            <Separator Margin="20"/>
+
+
+                            <!--PRISONER VISITOR-->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="PRISONER" FontSize="30" FontWeight="Bold" Margin="180 20 170 0"/>
+                                <TextBlock Grid.Column="1" Text="VISITOR" FontSize="30" FontWeight="Bold" Margin="229,20,170,0"/>
+                            </Grid>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="prisoner_b" Grid.Column="0" Height="250" Width="290" Click="Button_Click" IsEnabled="True">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="images/prisoner.png"/>
+                                    </Button.Background>
+                                </Button>
+                                <Button x:Name="visitor_b" IsEnabled="True" Grid.Column="1" Height="250" Width="290" Click="Button_Click_1">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="images/visitor.png"/>
+                                    </Button.Background>
+                                </Button>
+                            </Grid>
+                            <!--PRISONER VISITOR-->
+
+                            <!--CELL CASE-->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="CELL" FontSize="30" FontWeight="Bold" Margin="230 20 170 0"/>
+                                <TextBlock Grid.Column="1" Text="CASE" FontSize="30" FontWeight="Bold" Margin="230,20,170,0"/>
+                            </Grid>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="cell_b" IsEnabled="True" Grid.Column="0 " Height="250" Width="290" Margin="103,0" VerticalAlignment="Bottom" Click="Cell_Click">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="images/cell.png"/>
+                                    </Button.Background>
+                                </Button>
+                                <Button x:Name="case_b" Click="case_Click" Grid.Column="1" Height="250" Width="290">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="images/cases.png"/>
+                                    </Button.Background>
+                                </Button>
+                            </Grid>
+                            <!--CELL CASE-->
+
+                            <!--ESCORT JAIL OFFUCER-->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="1" Text="JAIL OFFICER" FontSize="30" FontWeight="Bold" Margin="210,20,170,0"/>
+                                <TextBlock Grid.Column="0" Text="ESCORT" FontSize="30" FontWeight="Bold" Margin="200 20 170 0"/>
+                            </Grid>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="escort_b" IsEnabled="True" Grid.Column="0" Click="escort_Click" Height="250" Width="290">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="images/policeescort.png"/>
+                                    </Button.Background>
+                                </Button>
+                                <Button x:Name="jail_officer_b_fm" Grid.Column="1" Height="250" Width="290" Click="jail_officer_b_fm_Click">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="images/jailofficer.png"/>
+                                    </Button.Background>
+                                </Button>
+                            </Grid>
+                            <!--ESCORT JAIL OFFICER-->
+
+                            <!--JUDGES TRIAL COURTS-->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="JUDGES" FontSize="30" FontWeight="Bold" Margin="190,20,170,0"/>
+                                <TextBlock Grid.Column="1" Text="TRIAL COURTS" FontSize="30" FontWeight="Bold" Margin="160 20 140 0"/>
+                            </Grid>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="judges_b" Click="judges_b_Click" IsEnabled="True" Grid.Column="0" Height="250" Width="290" Margin=" 0 0 0 50">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="images/attorney.png"/>
+                                    </Button.Background>
+                                </Button>
+                                <Button Click="trial_courts_b_Click" x:Name="trial_courts_b" Grid.Column="1" Height="250" Width="290" Margin=" 0 0 0 50">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="images/trialcourts.png"/>
+                                    </Button.Background>
+                                </Button>
+                            </Grid>
+                            <!--JUDGES TRIAL COURTS-->
+
+                            <!--JUDGES TRIAL COURTS-->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="LAWYER" FontSize="30" FontWeight="Bold" Margin="190,20,170,0"/>
+                            </Grid>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="attorney_b" Click="attorney_b_Click" IsEnabled="True" Grid.Column="0" Height="250" Width="290" Margin=" 0 0 0 50">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="images/cases.png"/>
+                                    </Button.Background>
+                                </Button>
+                            </Grid>
+                            <!--JUDGES TRIAL COURTS-->
+
+                        </StackPanel>
+
+                    </ScrollViewer>
+                </materialDesign:Card>
+                <!--file maintenance-->
+
+                <!--EDIT ADMIN INFORMATION-->
+                <materialDesign:Card Padding="0" Margin="20" x:Name="warden" Visibility="Hidden">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" >
+                        <StackPanel Orientation="Vertical"  >
+                            <Button Width="47" Height="40" Margin="930 5 5 0" Background="{x:Null}" Click="Button_Click_6">
+                                <materialDesign:PackIcon Kind="Close"/>
+                            </Button>
+                            <TextBlock Margin="0" Text="EDIT ADMIN INFORMATION" FontSize="35" FontWeight="DemiBold" Width="916" />
+                            <Separator Margin="25"/>
+
+                            <!--new username and new password-->
+                            <Grid Margin="10 0 20 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="NEW USER NAME:" FontSize="20" FontWeight="Bold" Margin="50 5 5 5"/>
+                                <TextBox x:Name="username" Grid.Column="1" />
+                                <TextBlock Grid.Column="2" Text="NEW PASSWORD:" FontSize="20" FontWeight="Bold" Margin="50 5 5 5"/>
+                                <PasswordBox x:Name="password" Grid.Column="3" />
+                            </Grid>
+                            <!--new username and new password-->
+
+                            <!--lastname and firstname-->
+                            <Grid Margin="10 0 20 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="LAST NAME:" FontSize="20" FontWeight="Bold" Margin="50 5 5 5"/>
+                                <TextBox x:Name="a_lastname" Grid.Column="1" />
+                                <TextBlock Grid.Column="2" Text="FIRST NAME:" FontSize="20" FontWeight="Bold" Margin="50 5 5 5"/>
+                                <TextBox x:Name="a_firstname" Grid.Column="3" />
+                            </Grid>
+                            <!--lastname and firstname-->
+
+                            <!--proceed and cancel-->
+                            <Grid Margin="10 0 20 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Click="admin_proceed_Click" x:Name="admin_proceed" Grid.Column="2" Content="PROCEED" FontSize="20" FontWeight="Bold" Margin="5 5 5 5"/>
+                                <Button x:Name="admin_cancel" Grid.Column="3" Content="CANCEL" />
+                            </Grid>
+                            <!--proceed and cancel-->
+
+
+                            <StackPanel x:Name="admin_approval" Visibility="Hidden">
+
+                                <!--old username and old password-->
+                                <Grid Margin="50">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="OLD USER NAME:" FontSize="20" FontWeight="Bold" />
+                                    <TextBox Grid.Column="1" Margin="0 0 50 0" />
+                                    <TextBlock Grid.Column="2" Text="OLD PASSWORD:" FontSize="20" FontWeight="Bold" />
+                                    <PasswordBox Grid.Column="3" />
+                                </Grid>
+                                <!--old username and old password-->
+
+                                <!--proceed and cancel-->
+                                <Grid Margin="10 -10 10 30">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button x:Name="admin_save" Grid.Column="2" Content="SAVE" FontSize="20" FontWeight="Bold" Margin="5 5 5 5"/>
+                                    <Button Grid.Column="3" Content="CANCEL" />
+                                </Grid>
+                                <!--proceed and cancel-->
+
+                            </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
+                </materialDesign:Card>
+                <!--EDIT ADMIN INFORMATION-->
+
+                <!--JAIL OFFICER GRANT-->
+                <materialDesign:Card x:Name="jailofficer" Height="500" Padding="0" Margin="20" Visibility="Hidden">
+
+                    <StackPanel Orientation="Vertical" Height="504"  >
+                        <Button Background="{x:Null}" Margin="919,5,5,20" Padding="-20" Click="Button_Click_9">
+                            <materialDesign:PackIcon Kind="Close"/>
+                        </Button>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="10" Text="JAIL OFFICER" FontSize="35" FontWeight="DemiBold" Width="766" />
+                            <Button Content="ADD NEW JAIL OFFICER" Click="Button_Click_13"/>
+                        </StackPanel>
+                        <Separator Margin="25"/>
+
+
+                        <Grid Height="380">
+
+                            <!--JAIL OFFICER datagrid-->
+                            <DataGrid Height="350" Margin="10,0,10,56" Visibility="Visible" x:Name="datagrid_jailofficer" FontSize="15" Grid.ColumnSpan="2" MouseDoubleClick="datagrid_jailofficer_MouseDoubleClick">
+                                <!--  SelectionChanged="DataGrid_SelectionChanged" MouseDoubleClick="DataGrid_MouseDoubleClick" -->
+                            </DataGrid>
+                            <!--JAIL OFFICER datagrid-->
+
+                            <!--JAIL OFFICER EDIT-->
+                            <StackPanel  Margin="10 -30 10 30" Visibility="Hidden" x:Name="edit_jailofficer">
+                                <Button Margin="10 10 850 10" Padding="-10" Click="Button_Click_10">
+                                    <materialDesign:PackIcon Kind="ArrowLeft"/>
+                                </Button>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Vertical" Height="267" Margin="0 0 20 0">
+
+                                        <Grid Margin="10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Text="ID" FontSize="20" FontWeight="Bold" Margin="10 0 10 0"/>
+                                            <TextBox x:Name="id" Grid.Column="1" Width="30" FontSize="20" IsEnabled="False"/>
+                                        </Grid>
+
+                                        <Grid Margin="10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Text="POSITION" FontSize="20" FontWeight="Bold" Margin="10 0 10 0"/>
+                                            <TextBox x:Name="position" Grid.Column="1" Width="200" FontSize="20"/>
+                                        </Grid>
+
+                                        <Grid Margin="10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Text="LASTNAME" FontSize="20" FontWeight="Bold" Margin="10 0 10 0"/>
+                                            <TextBox x:Name="lastname" Grid.Column="1" Text="" Width="200" FontSize="20"/>
+                                        </Grid>
+
+                                        <Grid Margin="10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Text="FIRSTNAME" FontSize="20" FontWeight="Bold" Margin="10 0 10 0"/>
+                                            <TextBox x:Name="firstname" Grid.Column="1" Text="" Width="200" FontSize="20"/>
+                                        </Grid>
+
+                                        <Grid Margin="10 10 10 15">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="MIDDLENAME" FontSize="20" FontWeight="Bold" Margin="10 0 10 0"/>
+                                            <TextBox x:Name="middlename" Grid.Column="1" Text="" Width="200" FontSize="20"/>
+                                        </Grid>
+
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Vertical" Height="295">
+
+                                        <Grid Margin="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Margin="10" Text="GRANT ACCESS" FontSize="28" FontWeight="Bold" Foreground="#DD607585"/>
+                                            <materialDesign:PackIcon Kind="AccountMultiplePlus" Grid.Column="1" Width="50" Height="50" Foreground="#DD778C9C"/>
+                                            <Button Grid.Column="2" x:Name="grant_access" Content="GRANT ACCESS" Width="200" Click="grant_access_Click" Margin="10"/>
+                                        </Grid>
+
+
+                                        <Grid Margin="10 10 10 15">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <materialDesign:Card Grid.Column="0" Margin="5" Width="280">
+                                                <StackPanel Orientation="Vertical">
+                                                    <TextBlock Text="PRISONER INFORMATION"  Margin="20" FontSize="20" FontWeight="Bold" />
+                                                    <CheckBox x:Name="access_prisoner" Content="PRISONER" Margin="5" FontWeight="Bold"/>
+                                                    <CheckBox x:Name="access_visitor" Content="VISITOR" Margin="5" FontWeight="Bold"/>
+                                                    <CheckBox x:Name="access_cell" Content="CELL" Margin="5" FontWeight="Bold"/>
+                                                    <CheckBox x:Name="access_case" Content="CASE" Margin="5" FontWeight="Bold"/>
+                                                    <CheckBox x:Name="access_escort" Content="ESCORT" Margin="5 5 5 15" FontWeight="Bold"/>
+                                                </StackPanel>
+                                            </materialDesign:Card>
+
+                                            <materialDesign:Card Grid.Column="1" Margin="5">
+                                                <StackPanel Orientation="Vertical">
+                                                    <TextBlock Text="REPORTS"  Margin="2" FontSize="20" FontWeight="Bold"/>
+                                                    <CheckBox x:Name="access_prisonerreport" Content="PRISONER REPORT" Margin="5" FontWeight="Bold"/>
+                                                    <CheckBox x:Name="access_visitorreport" Content="VISITOR REPORT" Margin="5" FontWeight="Bold"/>
+                                                    <CheckBox x:Name="access_cellreport" Content="CELL REPORT" Margin="5" FontWeight="Bold"/>
+                                                    <CheckBox x:Name="access_casereport" Content="CASE REPORT" Margin="5" FontWeight="Bold"/>
+                                                    <CheckBox x:Name="access_bail_report" Content="BAIL REPORT" Margin="5" FontWeight="Bold"/>
+                                                    <CheckBox x:Name="access_hearing_report" Content="HEARING REPORT" Margin="5" FontWeight="Bold"/>
+                                                    <CheckBox x:Name="access_jailofficerreport" Content="JAIL OFFICER REPORT" Margin="5 5 5 15" FontWeight="Bold"/>
+                                                </StackPanel>
+                                            </materialDesign:Card>
+                                        </Grid>
+                                    </StackPanel>
+
+                                </StackPanel>
+                            </StackPanel>
+
+
+                            <!--JAIL OFFICER EDIT-->
+
+                            <!--JAIL OFFICER datagrid-->
+
+
+                        </Grid>
+
+
+
+
+                    </StackPanel>
+                </materialDesign:Card>
+                <!--JAIL OFFICER GRANT-->
+
+                <!--reports-->
+
+                <materialDesign:Card Padding="0" Margin="20" x:Name="reports" Visibility="Hidden">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="450" >
+                        <StackPanel Orientation="Vertical"  >
+                            <TextBlock Margin="0,15,0 0" Text="REPORTS" FontSize="35" FontWeight="Bold" Width="916" />
+                            <Separator Margin="25"/>
+                            <CheckBox Margin="15,0,0,0" FontSize="30" FontWeight="DemiBold" x:Name="prisoner" Checked="prisoner_CheckedChanged">PRISONER REPORTS</CheckBox>
+                            <CheckBox Margin="15,0,0,0" FontSize="30" FontWeight="DemiBold" x:Name="visitor" Checked="visitor_CheckedChanged" >VISITOR REPORTS</CheckBox>
+                            <CheckBox Margin="15,0,0,0" FontSize="30" FontWeight="DemiBold" x:Name="cell" Checked="cell_CheckedChanged">CELL REPORTS</CheckBox>
+                            <CheckBox Margin="15,0,0,0" FontSize="30" FontWeight="DemiBold" x:Name="case" Checked="cases_CheckedChanged" >CASES REPORTS</CheckBox>
+                            <CheckBox Margin="15,0,0,0" FontSize="30" FontWeight="DemiBold" x:Name="bail" Checked="bail_CheckedChanged" >BAIL REPORTS</CheckBox>
+                            <CheckBox Margin="15,0,0,0" FontSize="30" FontWeight="DemiBold" x:Name="hearing" Checked="hearing_CheckedChanged" >HEARING SCHEDULE REPORTS</CheckBox>
+                            <CheckBox Margin="15,0,0,0" FontSize="30" FontWeight="DemiBold" x:Name="officer" Checked="officer_CheckedChanged" >JAIL OFFICER REPORTS</CheckBox>
+                        </StackPanel>
+                    </ScrollViewer>
+                </materialDesign:Card>
+                <!--reports-->
+
+                <!--utilities-->
+
+                <materialDesign:Card Padding="0" Margin="20" x:Name="utilities" Visibility="Hidden">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="270" >
+                        <StackPanel Orientation="Vertical"  >
+                            <TextBlock Margin="0,15,0 0" Text="UTILITIES" FontSize="35" FontWeight="Bold" Width="916" />
+                            <Separator Margin="25"/>
+                            <CheckBox Margin="15,0,0,0" FontSize="30" FontWeight="DemiBold" x:Name="audittrail" Checked="audittrail_CheckedChanged">AUDIT TRAIL</CheckBox>
+                            <CheckBox Visibility="Collapsed" Margin="15,0,0,0" FontSize="30" FontWeight="DemiBold" x:Name="Backup" Checked="Backup_CheckedChanged">BACKUP AND RESTORE</CheckBox>
+                            <CheckBox Margin="15,0,0,0" FontSize="30" FontWeight="DemiBold" x:Name="archive" Checked="archive_CheckedChanged">ARCHIVE</CheckBox>
+
+
+
+                            <!--<CheckBox Margin="15,0,0,0" FontSize="30" FontWeight="DemiBold" x:Name="archive" Checked="archive_CheckedChanged" >ARCHIVE</CheckBox>-->
+                        </StackPanel>
+                    </ScrollViewer>
+                </materialDesign:Card>
+                <!--utilities-->
+
+                <!--(file maintenance) attorney-->
+                <materialDesign:Card Padding="0" Margin="0 12 10 10" x:Name="b_attorney" Visibility="Collapsed" Height="700">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden">
+                        <StackPanel Orientation="Vertical"  >
+                            <Button Width="47" Height="40" Margin="930 5 5 0" Background="{x:Null}" Click="Button_Click_30">
+                                <materialDesign:PackIcon Kind="Close"/>
+                            </Button>
+                            <TextBlock Margin="5" Text="LAWYER FILE MAINTENANCE" FontSize="45" FontWeight="DemiBold" Width="916" />
+                            <Separator Margin="20"/>
+
+                            <!--attorney main-->
+                            <StackPanel Orientation="Vertical" x:Name="a_main" Visibility="Visible">
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Click="add_attorney_Click" x:Name="add_attorney" Content="ADD NEW LAWYER" Margin="20 0 0 0"/>
+                                    <Button Visibility="Collapsed" Click="delete_attorney_Click" x:Name="delete_attorney" Content="DELETE" Margin="20 0 0 0"/>
+                                    <TextBlock x:Name="aa_id" Visibility="Hidden"/>
+                                    <TextBlock FontSize="20" FontWeight="Bold" Text="SEARCH: " Margin="390 0 10 0"/>
+                                    <TextBox Width="200" Margin="10 0 10 0" x:Name="search_attorney" SelectionChanged="search_attorney_SelectionChanged"/>
+                                </StackPanel>
+                            <DataGrid SelectionChanged="datagrid_attorney_SelectionChanged" MouseDoubleClick="datagrid_attorney_MouseDoubleClick" x:Name="datagrid_attorney" Margin="20" Height="480"/>
+                            </StackPanel>
+                            <!--attorney main-->
+
+                            <!--attorney add-->
+                            <StackPanel x:Name="a_add" Orientation="Vertical" Visibility="Collapsed">
+                                <TextBlock Text="ADD A NEW LAWYER" FontSize="30" FontWeight="Bold" Margin="20"/>
+                                <Grid Margin="20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="FIRSTNAME: " FontSize="25" Margin="5" Grid.Column="0"/>
+                                    <TextBox Margin="5" Grid.Column="1" x:Name="atty_firstname"/>
+                                    <TextBlock Text="LASTNAME: " FontSize="25" Margin="5" Grid.Column="2"/>
+                                    <TextBox x:Name="atty_lastname" Margin="5" Grid.Column="3"/>
+                                    
+                                </Grid>
+
+                                <Grid Margin="20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="MIDDLENAME: " FontSize="25" Margin="5" Grid.Column="0"/>
+                                    <TextBox Margin="5" Grid.Column="1" x:Name="atty_middlename"/>
+                                    <TextBlock Text="GENDER: " FontSize="25" Margin="5" Grid.Column="2"/>
+                                    <ComboBox x:Name="atty_gender" FontSize="25" Margin="5" Grid.Column="3">
+                                        <ComboBoxItem Content="MALE"/>
+                                        <ComboBoxItem Content="FEMALE"/>
+                                    </ComboBox>
+
+                                </Grid>
+
+                                <Grid Margin="20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width=".5*"/>
+                                        <ColumnDefinition Width=".75*"/>
+                                        <ColumnDefinition Width=".75*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="BIRTHDATE: " FontSize="25" Margin="5" Grid.Column="0"/>
+                                    <DatePicker Margin="5" Grid.Column="1" x:Name="atty_birthdate"/>
+                                    <TextBlock Text="ADDRESS: " FontSize="25" Margin="5" Grid.Column="2"/>
+                                    <TextBox x:Name="atty_address0" Margin="5" Grid.Column="3"/>
+                                    <StackPanel Orientation="Horizontal" Grid.Column="4" Margin="5">
+                                        <ComboBox x:Name="atty_address1" Width="130">
+                                            <ComboBoxItem Content="San Fernando, Pampanga"/>
+                                            <ComboBoxItem Content="San Simon, Pampanga"/>
+                                            <ComboBoxItem Content="Arayat, Pampanga"/>
+                                            <ComboBoxItem Content="Macabebe, Pampanga"/>
+                                            <ComboBoxItem Content="Candaba, Pampanga"/>
+                                            <ComboBoxItem Content="Lubao, Pampanga"/>
+                                            <ComboBoxItem Content="Guagua, Pampanga"/>
+                                            <ComboBoxItem Content="San Luis, Pampanga"/>
+                                            <ComboBoxItem Content="Masantol, Pampanga"/>
+                                            <ComboBoxItem Content="Bacoor, Pampanga"/>
+                                            <ComboBoxItem Content="Apalit, Pampanga"/>
+                                            <ComboBoxItem Content="Porac, Pampanga"/>
+                                            <ComboBoxItem Content="Angeles, Pampanga"/>
+                                            <ComboBoxItem Content="Sasmuan, Pampanga"/>
+                                            <ComboBoxItem Content="Sta.Rita, Pampanga"/>
+                                            <ComboBoxItem Content="Minalin, Pampanga"/>
+                                            <ComboBoxItem Content="Magalang, Pampanga"/>
+                                            <ComboBoxItem Content="Mabalacat, Pampanga"/>
+                                            <ComboBoxItem Content="Sto. Tomas, Pampanga"/>
+                                            <ComboBoxItem Content="Florida Blanca, Pampanga"/>
+                                            <ComboBoxItem Content="Sta. Ana, Pampanga"/>
+                                            <ComboBoxItem Content="Mexico"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Margin="20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="CONTACT NUMBER: " FontSize="25" Margin="5" Grid.Column="0"/>
+                                    <TextBox Margin="5" Grid.Column="1" x:Name="atty_contact_no"/>
+                                </Grid>
+
+                                <Grid Margin="20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button Click="Button_Click_26" Content="ADD" FontSize="25" Margin="5" Grid.Column="2" Height="40"/>
+                                    <Button Click="Button_Click_27" Content="CANCEL" FontSize="25" Margin="5" Grid.Column="3" Height="40"/>
+                                </Grid>
+
+                            </StackPanel>
+                            <!--attorney add-->
+
+                            <!--attorney update-->
+                            <StackPanel x:Name="a_update" Orientation="Vertical" Visibility="Collapsed">
+                                <TextBlock Text="EDIT" FontSize="30" FontWeight="Bold" Margin="20"/>
+                                <TextBlock Visibility="Hidden" x:Name="atty_id"/>
+                                <Grid Margin="20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="FIRSTNAME: " FontSize="25" Margin="5" Grid.Column="0"/>
+                                    <TextBox Margin="5" Grid.Column="1" x:Name="atty_firstnames"/>
+                                    <TextBlock Text="LASTNAME: " FontSize="25" Margin="5" Grid.Column="2"/>
+                                    <TextBox x:Name="atty_lastnames" Margin="5" Grid.Column="3"/>
+
+                                </Grid>
+
+                                <Grid Margin="20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="MIDDLENAME: " FontSize="25" Margin="5" Grid.Column="0"/>
+                                    <TextBox Margin="5" Grid.Column="1" x:Name="atty_middlenames"/>
+                                    <TextBlock Text="GENDER: " FontSize="25" Margin="5" Grid.Column="2"/>
+                                    <ComboBox x:Name="atty_genders" FontSize="25" Margin="5" Grid.Column="3">
+                                        <ComboBoxItem Content="MALE"/>
+                                        <ComboBoxItem Content="FEMALE"/>
+                                    </ComboBox>
+
+                                </Grid>
+
+                                <Grid Margin="20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width=".5*"/>
+                                        <ColumnDefinition Width=".75*"/>
+                                        <ColumnDefinition Width=".75*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="BIRTHDATE: " FontSize="25" Margin="5" Grid.Column="0"/>
+                                    <DatePicker Margin="5" Grid.Column="1" x:Name="atty_birthdates"/>
+                                    <TextBlock Text="ADDRESS: " FontSize="25" Margin="5" Grid.Column="2"/>
+                                    <TextBox x:Name="atty_address0s" Margin="5" Grid.Column="3"/>
+                                    <StackPanel Orientation="Horizontal" Grid.Column="4" Margin="5">
+                                        <ComboBox x:Name="atty_address1s" Width="130">
+                                            <ComboBoxItem Content="San Fernando, Pampanga"/>
+                                            <ComboBoxItem Content="San Simon, Pampanga"/>
+                                            <ComboBoxItem Content="Arayat, Pampanga"/>
+                                            <ComboBoxItem Content="Macabebe, Pampanga"/>
+                                            <ComboBoxItem Content="Candaba, Pampanga"/>
+                                            <ComboBoxItem Content="Lubao, Pampanga"/>
+                                            <ComboBoxItem Content="Guagua, Pampanga"/>
+                                            <ComboBoxItem Content="San Luis, Pampanga"/>
+                                            <ComboBoxItem Content="Masantol, Pampanga"/>
+                                            <ComboBoxItem Content="Bacoor, Pampanga"/>
+                                            <ComboBoxItem Content="Apalit, Pampanga"/>
+                                            <ComboBoxItem Content="Porac, Pampanga"/>
+                                            <ComboBoxItem Content="Angeles, Pampanga"/>
+                                            <ComboBoxItem Content="Sasmuan, Pampanga"/>
+                                            <ComboBoxItem Content="Sta.Rita, Pampanga"/>
+                                            <ComboBoxItem Content="Minalin, Pampanga"/>
+                                            <ComboBoxItem Content="Magalang, Pampanga"/>
+                                            <ComboBoxItem Content="Mabalacat, Pampanga"/>
+                                            <ComboBoxItem Content="Sto. Tomas, Pampanga"/>
+                                            <ComboBoxItem Content="Florida Blanca, Pampanga"/>
+                                            <ComboBoxItem Content="Sta. Ana, Pampanga"/>
+                                            <ComboBoxItem Content="Mexico"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Margin="20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="CONTACT NUMBER: " FontSize="25" Margin="5" Grid.Column="0"/>
+                                    <TextBox Margin="5" Grid.Column="1" x:Name="atty_contact_nos"/>
+                                </Grid>
+
+                                <Grid Margin="20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button Click="Button_Click_28" Content="UPDATE" FontSize="25" Margin="5" Grid.Column="2" Height="40"/>
+                                    <Button Click="Button_Click_29" Content="CANCEL" FontSize="25" Margin="5" Grid.Column="3" Height="40"/>
+                                </Grid>
+
+                            </StackPanel>
+                            <!--attorney update-->
+                        </StackPanel>
+
+                    </ScrollViewer>
+                </materialDesign:Card>
+                <!--(file maintenance) attorney-->
+
+                <!--(file maintenance) trial courts-->
+                <materialDesign:Card Padding="0" Margin="0 12 10 10" x:Name="b_court" Visibility="Collapsed" Height="700">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden">
+                        <StackPanel Orientation="Vertical"  >
+                            <Button Width="47" Height="40" Margin="930 5 5 0" Background="{x:Null}" Click="Button_Click_32">
+                                <materialDesign:PackIcon Kind="Close"/>
+                            </Button>
+                            <TextBlock Margin="5" Text="TRIAL COURTS MAINTENANCE" FontSize="45" FontWeight="DemiBold" Width="916" />
+                           
+
+                            <!--trialcourts main-->
+                            <StackPanel Orientation="Vertical" x:Name="tc_main" Visibility="Visible">
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Click="add_court_Click" x:Name="add_court" Content="ADD NEW TRIAL COURT" Margin="20 0 0 0"/>
+                                    <Button Click="delete_court_Click" Visibility="Collapsed" x:Name="delete_court" Content="DELETE" Margin="20 0 0 0"/>
+                                    <TextBlock x:Name="tc_id" Visibility="Hidden"/>
+                                    <TextBlock FontSize="20" FontWeight="Bold" Text="SEARCH: " Margin="390 0 10 0"/>
+                                    <TextBox SelectionChanged="search_court_SelectionChanged" Width="180" Margin="10 0 10 0" x:Name="search_court"/>
+                                </StackPanel>
+                                <DataGrid SelectionChanged="datagrid_court_SelectionChanged" MouseDoubleClick="datagrid_court_MouseDoubleClick" x:Name="datagrid_court" Margin="20" Height="480"/>
+                            </StackPanel>
+                            <!--trialcourts main-->
+
+                            <!--trialcourts add/update-->
+                            <StackPanel x:Name="tc_add" Orientation="Vertical" Visibility="Collapsed">
+                                <TextBlock x:Name="tc_add_update" FontSize="30" FontWeight="Bold" Margin="20"/>
+                                <Grid Margin="20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="BRANCH: " FontSize="25" Margin="5" Grid.Column="0"/>
+                                    <TextBox Margin="5" Grid.Column="1" x:Name="court_branch"/>
+
+                                </Grid>
+                                <Grid Margin="20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button Click="tc_b_update_Click" x:Name="tc_b_update" Content="UPDATE" FontSize="25" Margin="5" Grid.Column="2" Height="40" Visibility="Collapsed"/>
+                                    <Button Click="tc_b_add_Click" x:Name="tc_b_add" Content="ADD" FontSize="25" Margin="5" Grid.Column="2" Height="40" Visibility="Collapsed"/>
+                                    <Button Click="Button_Click_31" Content="CANCEL" FontSize="25" Margin="5" Grid.Column="3" Height="40"/>
+                                </Grid>
+
+                            </StackPanel>
+                            <!--trialcourts add / update-->
+                        </StackPanel>
+
+                    </ScrollViewer>
+                </materialDesign:Card>
+                <!--(file maintenance) trial courts-->
+
+                <!--(file maintenance) judges-->
+                <materialDesign:Card Padding="0" Margin="0 12 10 10" x:Name="b_court" Visibility="Collapsed" Height="700">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden">
+                        <StackPanel Orientation="Vertical"  >
+                            <Button Width="47" Height="40" Margin="930 5 5 0" Background="{x:Null}" Click="Button_Click_32">
+                                <materialDesign:PackIcon Kind="Close"/>
+                            </Button>
+                            <TextBlock Margin="5" Text="TRIAL COURTS MAINTENANCE" FontSize="45" FontWeight="DemiBold" Width="916" />
+
+
+                            <!--trialcourts main-->
+                            <StackPanel Orientation="Vertical" x:Name="tc_main" Visibility="Visible">
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Click="add_court_Click" x:Name="add_court" Content="ADD NEW TRIAL COURT" Margin="20 0 0 0"/>
+                                    <Button Click="delete_court_Click" Visibility="Collapsed" x:Name="delete_court" Content="DELETE" Margin="20 0 0 0"/>
+                                    <TextBlock x:Name="tc_id" Visibility="Hidden"/>
+                                    <TextBlock FontSize="20" FontWeight="Bold" Text="SEARCH: " Margin="390 0 10 0"/>
+                                    <TextBox SelectionChanged="search_court_SelectionChanged" Width="180" Margin="10 0 10 0" x:Name="search_court"/>
+                                </StackPanel>
+                                <DataGrid SelectionChanged="datagrid_court_SelectionChanged" MouseDoubleClick="datagrid_court_MouseDoubleClick" x:Name="datagrid_court" Margin="20" Height="480"/>
+                            </StackPanel>
+                            <!--trialcourts main-->
+
+                            <!--trialcourts add/update-->
+                            <StackPanel x:Name="tc_add" Orientation="Vertical" Visibility="Collapsed">
+                                <TextBlock x:Name="tc_add_update" FontSize="30" FontWeight="Bold" Margin="20"/>
+                                <Grid Margin="20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="BRANCH: " FontSize="25" Margin="5" Grid.Column="0"/>
+                                    <TextBox Margin="5" Grid.Column="1" x:Name="court_branch"/>
+
+                                </Grid>
+                                <Grid Margin="20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button Click="tc_b_update_Click" x:Name="tc_b_update" Content="UPDATE" FontSize="25" Margin="5" Grid.Column="2" Height="40" Visibility="Collapsed"/>
+                                    <Button Click="tc_b_add_Click" x:Name="tc_b_add" Content="ADD" FontSize="25" Margin="5" Grid.Column="2" Height="40" Visibility="Collapsed"/>
+                                    <Button Click="Button_Click_31" Content="CANCEL" FontSize="25" Margin="5" Grid.Column="3" Height="40"/>
+                                </Grid>
+
+                            </StackPanel>
+                            <!--trialcourts add / update-->
+                        </StackPanel>
+
+                    </ScrollViewer>
+                </materialDesign:Card>
+                <!--(file maintenance) judges-->
+
+                <!-- (transactions)panel for visitors-->
+                <materialDesign:Card Padding="0" Margin="0 12 10 10" x:Name="b_visitor_log" Visibility="Collapsed" Height="700">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Margin="10,10,-10,-10">
+                        <StackPanel Orientation="Vertical"  >
+                            <Button Width="47" Height="40" Margin="930 5 5 0" Background="{x:Null}" Click="Button_Click_23">
+                                <materialDesign:PackIcon Kind="Close"/>
+                            </Button>
+                            <TextBlock Margin="5" Text="VISITORS LOG" FontSize="45" FontWeight="DemiBold" Width="916" />
+                            <Separator Margin="20"/>
+
+                            <StackPanel Orientation="Vertical" x:Name="vl" Visibility="Visible" Width="946">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="LIST" FontSize="30" Margin="50 10 10 10" FontWeight="Bold" />
+                                    <TextBlock Text="SEARCH: " FontSize="20" Margin="600 20 10 10"/>
+                                    <TextBox Width="150" FontSize="20" Margin="10" x:Name="vl_searchlist" SelectionChanged="vl_searchlist_SelectionChanged"/>
+                                </StackPanel>
+                                <DataGrid ToolTip="ADD A VISITORLOG FOR HIM/HER" Margin="30" x:Name="vl_datagrid_visitor" SelectionChanged="vl_datagrid_visitor_SelectionChanged" Height="420">
+                                    
+                                </DataGrid>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Vertical" Visibility="Visible" x:Name="vl_log">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Visitor: " FontSize="30" Margin="10"/>
+                                    <TextBlock x:Name="vl_id" FontSize="30" Margin="10"/>
+                                    <TextBlock x:Name="vl_lname" FontSize="30" Margin="10"/>
+                                    <TextBlock x:Name="vl_fname" FontSize="30" Margin="10"/>
+                                </StackPanel>
+                                <Grid Margin="30">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <TextBlock Text="TIME IN: " FontSize="23" FontWeight="Bold" Margin="5 10 5 5" Grid.Column="0"/>
+                                    <materialDesign:TimePicker Margin="10" x:Name="vl_timein" FontSize="23" FontWeight="Bold"  Grid.Column="1"/>
+                                </Grid>
+
+                                <Grid Margin="30 0 30 30">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock  Text="VERIFICATION ID: " FontSize="23" FontWeight="Bold" Margin="5 10 5 5" Grid.Column="0"/>
+                                    <ComboBox Margin="10" x:Name="vl_idpresented" FontSize="23" FontWeight="Bold"  Grid.Column="1" SelectionChanged="vl_idpresented_SelectionChanged">
+                                        <ComboBoxItem Content="DRIVERS LICENSE"/>
+                                        <ComboBoxItem Content="SCHOOLD ID"/>
+                                        <ComboBoxItem Content="PASSPORT"/>
+                                        <ComboBoxItem Content="VOTERS ID"/>
+                                        <ComboBoxItem>
+                                            <Button Click="vl_othersid_Click" x:Name="vl_othersid" Content="OTHERS" Width="200" Margin="5"/>
+                                        </ComboBoxItem>
+                                    </ComboBox>
+                                    <TextBlock Text="REFERENCE NUMBER: " FontSize="23" FontWeight="Bold" Margin="5 10 5 5" Grid.Column="2"/>
+                                    <TextBox Margin="10" x:Name="vl_refnum" FontSize="23" FontWeight="Bold"  Grid.Column="3"/>
+                                </Grid>
+                                <StackPanel Orientation="Horizontal" x:Name="vl_others" Width="540" Background="#FF303030" Visibility="Collapsed">
+                                    <TextBox Width="200" x:Name="vl_idpresenteds" Margin="10"/>
+                                    <Button Content="CANCEL" Margin="10" Click="Button_Click_24"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Button x:Name="savelog" Click="savelog_Click" Content="  SAVE LOG  " FontSize="30" Margin="580 10 10 10" Height="45"/>
+                                    <Button Content="  CANCEL  " FontSize="30" Margin="10" Height="45" Click="Button_Click_25"/>
+                                </StackPanel>
+                            </StackPanel>
+
+
+                        </StackPanel>
+
+                    </ScrollViewer>
+                </materialDesign:Card>
+                <!-- (transactions)panel for visitors-->
+
+                <!-- (transactions)panel for cell monitoring-->
+                <materialDesign:Card Padding="0" Margin="0 12 10 10" x:Name="b_cell_monitoring" Visibility="Hidden" Height="700">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Margin="10,10,-10,-10">
+                        <StackPanel Orientation="Vertical"  >
+                            <Button Width="47" Height="40" Margin="930 5 5 0" Background="{x:Null}" Click="Button_Click_16">
+                                <materialDesign:PackIcon Kind="Close"/>
+                            </Button>
+                            <TextBlock Margin="5" Text=" CELL MONITORING" FontSize="45" FontWeight="DemiBold" Width="916" />
+                            <Separator Margin="20"/>
+
+                            <StackPanel Orientation="Horizontal" Margin="10">
+                                <Button Click="cell1_Click" x:Name="cell1" Content="CELL 1" Margin="30 15 15 15" Width="160" Height="50" Background="#FFEA2626" ToolTip="3RD DEGREE HIGH RISK"/>
+                                <Button Click="cell2_Click_1" x:Name="cell2" Content="CELL 2" Margin="15" Width="160" Height="50" Background="#FF444CEA" ToolTip="2ND DEGREE HIGH RISK"/>
+                                <Button Click="cell3_Click" x:Name="cell3" Content="CELL 3" Margin="15" Width="160" Height="50" Background="#FFE47F2B" ToolTip="1ST DEGREE HIGH RISK"/>
+                                <Button Click="cell4_Click" x:Name="cell4" Content="CELL 4" Margin="15" Width="160" Height="50" Background="#FF60D13E" ToolTip="AVERAGE RISK"/>
+                                <Button Click="cell5_Click" x:Name="cell5" Content="CELL 5" Margin="15" Width="160" Height="50" Background="#FFEAD138" ToolTip="LOW RISK"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Vertical" x:Name="cell_level" Visibility="Hidden">
+                                <TextBlock x:Name="cell_name" Margin="20" FontSize="30" FontWeight="Bold"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <!--has 4  columns-->
+                                    <TextBlock Grid.Column="0" Text="NUMBER OF INMATES IN THIS CELL: " Margin="20" FontSize="30"/>
+                                    <TextBlock FontWeight="ExtraBold" HorizontalAlignment="Center" x:Name="no_inmates_cell" Grid.Column="1" Margin="50 10 10 10" FontSize="50"/>
+                                    <Button Padding="0" Grid.Column="2" Margin="15,0,22,0" FontSize="20" Height="66" VerticalAlignment="Top" ToolTip="Add an Inmate to this cell">
+                                        <materialDesign:PackIcon Kind="Plus" Height="70" Width="70"/>
+                                    </Button>
+                                    <Button Click="Button_Click_15" Padding="0" Grid.Column="3" Margin="10,0,132,0" FontSize="20" Height="66" VerticalAlignment="Top" ToolTip="View all inmates in this cell">
+                                        <materialDesign:PackIcon Kind="Eye" Height="70" Width="79"/>
+                                    </Button>
+
+                                </Grid>
+                                <StackPanel Margin="10">
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                        <DataGrid Height="400" Visibility="Collapsed" x:Name="datagrid_cellviewer">
+
+                                        </DataGrid>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </StackPanel>
+
+
+
+
+
+
+
+                        </StackPanel>
+
+                    </ScrollViewer>
+                </materialDesign:Card>
+                <!-- (transactions)panel for cell monitoring-->
+
+                <!-- (transactions)panel for hearing schedule-->
+                <materialDesign:Card Padding="0" Margin="0 12 10 10" x:Name="b_hearing_schedule" Visibility="Collapsed" Height="700">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" >
+                        <StackPanel Orientation="Vertical" Width="979"  >
+                            <Button Width="47" Height="40" Margin="915 5 5 0" Background="{x:Null}" Click="Button_Click_22">
+                                <materialDesign:PackIcon Kind="Close"/>
+                            </Button>
+                            <TextBlock Margin="5" Text="HEARING SCHEDULES" FontSize="45" FontWeight="DemiBold" Width="916" />
+                            <Button Content="SET HEARING SCHEDULE" Width="270" FontSize="20" Margin="700 -65 0 0" Click="Button_Click_21" />
+                            <Separator Margin="20"/>
+
+                            <StackPanel Orientation="Vertical" x:Name="set_hs" Visibility="Collapsed">
+                                <Grid Margin="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Set Date: " FontSize="25" Margin="10" Grid.Column="0"/>
+                                    <DatePicker x:Name="hs_date" Grid.Column="1" Margin="10" Height="40"/>
+                                    <TextBlock Text="Set Time: " FontSize="25" Margin="10" Grid.Column="2"/>
+                                    <materialDesign:TimePicker x:Name="hs_time" Grid.Column="3" Margin="10" Height="40"/>
+                                    <Button Content="asdasdasd" Click="Button_Click_18" />
+                                </Grid>
+
+                                <!--inmate-->
+                                <Grid Margin="20" Background="#FF303030" Visibility="Visible">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="4*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Inmate: " FontSize="25" Margin="10" Grid.Column="0" />
+                                    <Button Content="Add New Inmate: " FontSize="18" Margin="10 -50 10 10" Grid.Column="0" />
+                                    <StackPanel Grid.Column="0" Height="50" Orientation="Horizontal" Margin="10,110,10,71">
+                                        <TextBlock Margin="0 15 5 0" x:Name="hs_inmateid" FontSize="18"/>
+                                        <TextBlock Margin="0 15 5 0" x:Name="hs_inmatelname" FontSize="18" Width="115"/>
+                                        <TextBlock Margin="0 15 5 0" x:Name="hs_inmatefname" FontSize="18" Width="115"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="SEARCH: " Margin="490 10 0 5"/>
+                                            <TextBox Width="130" x:Name="search_hs_inmate" SelectionChanged="search_hs_inmate_SelectionChanged"/>
+                                        </StackPanel>
+                                        <DataGrid Margin="10" x:Name="datagrid_hs_inmate" SelectionChanged="datagrid_hs_inmate_SelectionChanged"  Height="200" />
+                                    </StackPanel>
+                                </Grid>
+                                <!--inmate-->
+
+                                <!--attorney-->
+                                <Grid Margin="20" Background="#FF303030" Visibility="Visible">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="4*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Attorney: " FontSize="25" Margin="10" Grid.Column="0" />
+                                    <Button Content="Add New Attorney: " FontSize="18" Margin="10 -50 10 10" Grid.Column="0" />
+                                    <StackPanel Grid.Column="0" Height="50" Orientation="Horizontal" Margin="10,110,10,71">
+                                        <TextBlock Margin="0 15 5 0" x:Name="hs_attorneyid" FontSize="18"/>
+                                        <TextBlock Margin="0 15 5 0" x:Name="hs_attorneylname" FontSize="18" Width="115"/>
+                                        <TextBlock Margin="0 15 5 0" x:Name="hs_attorneyfname" FontSize="18" Width="115"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="SEARCH: " Margin="490 10 0 5"/>
+                                            <TextBox Width="130" x:Name="search_hs_attorney" TextChanged="search_hs_attorney_TextChanged"/>
+                                        </StackPanel>
+                                        <DataGrid Margin="10" x:Name="datagrid_hs_attorney"   Height="200" SelectionChanged="datagrid_hs_attorney_SelectionChanged"/>
+                                    </StackPanel>
+                                </Grid>
+                                <!--attorney-->
+
+                                <!--Judge / Jury-->
+                                <Grid Margin="20" Background="#FF303030" Visibility="Visible">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="4*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Judge / Jury: " FontSize="25" Margin="10" Grid.Column="0" />
+                                    <Button Content="Add New Judge / Jury" FontSize="18" Margin="10 -50 10 10" Grid.Column="0" />
+                                    <StackPanel Grid.Column="0" Height="50" Orientation="Horizontal" Margin="10,110,10,71">
+                                        <TextBlock Margin="0 15 5 0" x:Name="hs_judgeid" FontSize="18"/>
+                                        <TextBlock Margin="0 15 5 0" x:Name="hs_judgelname" FontSize="18" Width="115"/>
+                                        <TextBlock Margin="0 15 5 0" x:Name="hs_judgefname" FontSize="18" Width="115"/>
+                                        <TextBlock Margin="0 15 5 0" x:Name="hs_judgecourtid" FontSize="18" Width="115" Visibility="Hidden"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="SEARCH: " Margin="500 10 0 5"/>
+                                            <TextBox Width="130" x:Name="search_hs_judge" SelectionChanged="search_hs_judge_SelectionChanged" />
+                                        </StackPanel>
+                                        <DataGrid Margin="10" x:Name="datagrid_hs_judge" SelectionChanged="datagrid_hs_judge_SelectionChanged"  Height="200" />
+                                    </StackPanel>
+                                </Grid>
+                                <!--Judge / Jury-->
+                                
+                                <!--Hearing Court!-->
+                                <Grid Margin="20" Background="#FF303030" Visibility="Visible">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="4*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0" Orientation="Vertical" Margin="10">
+                                        <TextBlock Text="Hearing Court: " FontSize="25" Margin="10"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock x:Name="hs_hearing_court" Margin="10" Height="36" FontSize="18" FontWeight="bold"/>
+                                            <TextBlock x:Name="hs_hearing_courtid" Margin="10" Height="36" FontSize="18" FontWeight="bold"/>
+                                        </StackPanel>
+                                        <Button Content="Add New Judge / Jury" FontSize="18" Margin="10" />
+                                        
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="SEARCH: " Margin="360 10 0 5"/>
+                                            <TextBox Width="130" x:Name="search_hs_court" SelectionChanged="search_hs_court_SelectionChanged" />
+                                        </StackPanel>
+                                        <DataGrid Margin="10" x:Name="datagrid_hs_court" Height="200" />
+                                    </StackPanel>
+                                </Grid>
+                                <!--Hearing Court!-->
+
+                                <!--Escort-->
+                                <Grid Margin="20" Background="#FF303030" Visibility="Visible">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="4*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0" Orientation="Vertical" Margin="10">
+                                        <TextBlock Text="Escort: " FontSize="25" Margin="10"/>
+                                        <TextBlock x:Name="hs_escortpos" Margin="10" Height="36" FontSize="18" FontWeight="bold"/>
+                                    
+                                        <StackPanel Orientation="Horizontal">
+
+                                            <TextBlock x:Name="hs_escortid" Margin="10" Height="36" FontSize="18" FontWeight="bold"/>
+                                            <TextBlock x:Name="hs_escortlname" Margin="10" Height="36" FontSize="18" FontWeight="bold"/>
+                                        <TextBlock x:Name="hs_escortfname" Margin="10" Height="36" FontSize="18" FontWeight="bold"/>
+                                    </StackPanel> 
+                                        
+                                        <Button Content="Add New Escort" FontSize="18" Margin="10" />
+
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="SEARCH: " Margin="340 10 0 5"/>
+                                            <TextBox Width="130" x:Name="search_hs_escort" SelectionChanged="search_hs_escort_SelectionChanged" />
+                                        </StackPanel>
+                                        <DataGrid Margin="10" x:Name="datagrid_hs_escort" Height="200" SelectionChanged="datagrid_hs_escort_SelectionChanged" />
+                                    </StackPanel>
+                                </Grid>
+                                <!--Escort-->
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="SET SCHEDULE" Height="50" FontSize="30" Margin="540 20 20 20" Click="Button_Click_19"/>
+                                    <Button Content="CANCEL" Height="50" FontSize="30" Margin="20" Click="Button_Click_20"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <DataGrid Margin="20" x:Name="view_hs" Height="500">
+                                
+                            </DataGrid>
+
+
+
+
+
+                        </StackPanel>
+
+                    </ScrollViewer>
+                </materialDesign:Card>
+                <!-- (transactions)panel for hearing schedule-->
+
+            </Grid>
+
+
+            <!--panel of entities-->
+        </Grid>
+
+    </StackPanel>
+</Window>

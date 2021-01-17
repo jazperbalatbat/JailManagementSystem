@@ -1,0 +1,173 @@
+﻿<Window x:Class="JailManagementSystem.visitor.visitoradd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JailManagementSystem.visitor"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{StaticResource MaterialDesignFont}"
+        Loaded="Window_Loaded"
+        mc:Ignorable="d"
+        Title="visitoradd" Height="590" Width="1000" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
+
+    <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth2">
+        <StackPanel>
+
+            <Button Background="{x:Null}" Margin="950,5,0,-15" Padding="-20" Click="Button_Click_1" Width="42">
+                <materialDesign:PackIcon Kind="Close"/>
+            </Button>
+            <!--ADD VISITOR-->
+            <materialDesign:Card Padding="5" Margin="20">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" >
+                    <StackPanel Margin="10">
+                        <TextBlock Grid.Column="0" Text="ADD VISITOR" FontWeight="Bold" FontSize="35"/>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="C:\Users\63935\source\repos\JailManagementSystem\JailManagementSystem/images/Visitor.png" Height="90" Margin="10 0 0 0"/>
+                        </StackPanel>
+                        <!--firstname and middlename-->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="FIRST NAME" Margin="5,5,18,5"/>
+                            <TextBox x:Name="firstname" Grid.Column="1" Margin="5 5 5 5"/>
+                            <TextBlock Grid.Column="2" Text="LAST NAME" Margin="5,5,18,5"/>
+                            <TextBox x:Name="lastname" Grid.Column="3" Margin="5 5 5 5"/>
+                        </Grid>
+                        <!--firstname and middlename-->
+
+                        <!--lastname and address-->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="MIDDLE NAME" Margin="5 5 5 5"/>
+                            <TextBox x:Name="middlename" Grid.Column="1" Margin="5 5 5 5"/>
+                            <TextBlock Grid.Column="2" Text="GENDER" Margin="5 5 5 5"/>
+                            <ComboBox x:Name="gender" Grid.Column="3" Margin="5" Grid.ColumnSpan="2">
+                                <ComboBoxItem>MALE</ComboBoxItem>
+                                <ComboBoxItem>FEMALE</ComboBoxItem>
+                            </ComboBox>
+                        </Grid>
+                        <!--lastname and address-->
+
+                        <!--GENDER-->
+                        <Grid Margin="0 0 0 20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="ADDRESS" Margin="5 5 5 5"/>
+                            <TextBox x:Name="address0" Margin="5" Grid.Column="1"/>
+                            <StackPanel Orientation="Horizontal" Grid.Column="2" Margin="5 5 5 5">
+                                <ComboBox x:Name="address1" Width="200">
+                                    <ComboBoxItem Content="San Fernando, Pampanga"/>
+                                    <ComboBoxItem Content="San Simon, Pampanga"/>
+                                    <ComboBoxItem Content="Arayat, Pampanga"/>
+                                    <ComboBoxItem Content="Macabebe, Pampanga"/>
+                                    <ComboBoxItem Content="Candaba, Pampanga"/>
+                                    <ComboBoxItem Content="Lubao, Pampanga"/>
+                                    <ComboBoxItem Content="Guagua, Pampanga"/>
+                                    <ComboBoxItem Content="San Luis, Pampanga"/>
+                                    <ComboBoxItem Content="Masantol, Pampanga"/>
+                                    <ComboBoxItem Content="Bacoor, Pampanga"/>
+                                    <ComboBoxItem Content="Apalit, Pampanga"/>
+                                    <ComboBoxItem Content="Porac, Pampanga"/>
+                                    <ComboBoxItem Content="Angeles, Pampanga"/>
+                                    <ComboBoxItem Content="Sasmuan, Pampanga"/>
+                                    <ComboBoxItem Content="Sta.Rita, Pampanga"/>
+                                    <ComboBoxItem Content="Minalin, Pampanga"/>
+                                    <ComboBoxItem Content="Magalang, Pampanga"/>
+                                    <ComboBoxItem Content="Mabalacat, Pampanga"/>
+                                    <ComboBoxItem Content="Sto. Tomas, Pampanga"/>
+                                    <ComboBoxItem Content="Florida Blanca, Pampanga"/>
+                                    <ComboBoxItem Content="Sta. Ana, Pampanga"/>
+                                    <ComboBoxItem Content="Mexico"/>
+                                </ComboBox>
+                            </StackPanel>
+
+                        </Grid>
+                        <!--GENDER-->
+
+                        <!--tooltray-->
+                        <Grid Margin="0 0 0 0">
+
+
+
+                            <Separator/>
+                            <ToolBarTray >
+                                <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
+                                    <TextBlock Text="INMATE TO VISIT" Margin="0 0 20 0" VerticalAlignment="Center" FontSize="17" FontWeight="Bold"/>
+                                    <materialDesign:PopupBox Height="58" ToolTip="inmate to visit">
+                                        <materialDesign:PopupBox.ToggleContent>
+                                            <materialDesign:PackIcon Kind="AccountPlus" Width="40" Height="29" Foreground="White" />
+                                        </materialDesign:PopupBox.ToggleContent>
+                                        <StackPanel>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Margin="30 10 0 0" Grid.Column="0" Text="SEARCH: "/>
+                                                <TextBox Grid.Column="1" Width="90" />
+                                            </Grid>
+                                            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+                                                <DataGrid x:Name="datagrid_visitors" Grid.ColumnSpan="3" Height="525" Margin="20" SelectionChanged="datagrid_visitors_SelectionChanged">
+                                                    <!-- MouseDoubleClick=""-->
+                                                </DataGrid>
+                                            </ScrollViewer>
+                                        </StackPanel>
+                                    </materialDesign:PopupBox>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock x:Name="vp_id" Visibility="Hidden" Margin="0 0 5 0"/>
+                                        <TextBlock x:Name="vp_lastname" Visibility="Hidden" Margin="0 0 5 0"/>
+                                        <TextBlock x:Name="vp_firstname" Visibility="Hidden" Margin="0 0 5 0"/>
+                                        <TextBlock x:Name="vp_middlename" Visibility="Hidden"/>
+                                    </StackPanel>
+
+                                    <TextBlock Text="RELATIONSHIP" Margin="0 0 20 0" VerticalAlignment="Center" FontSize="17" FontWeight="Bold"/>
+
+                                    <ComboBox x:Name="relation" Margin="5" Text="RELATION" Width="130">
+                                        <ComboBoxItem Content="relative"/>
+                                        <ComboBoxItem Content="NGO"/>
+                                    </ComboBox>
+                                </ToolBar>
+                            </ToolBarTray>
+                        </Grid>
+
+
+                        <!-- ADD EDIT DELETE CANCEL BUTTON-->
+                        <Grid Margin="20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*" />
+                                <ColumnDefinition Width="1*" />
+
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Content="ADD" FontSize="15" FontWeight="Bold" Width="200" Margin="506,0,6,0" Click="Button_Click_2" Height="26" VerticalAlignment="Top"/>
+                            <Button Grid.Column="1" Content="CANCEL"  FontSize="15" FontWeight="Bold" Click="Button_Click_1" Height="Auto"/>
+                        </Grid>
+                        <!-- ADD EDIT DELETE CANCEL BUTTON-->
+
+                    </StackPanel>
+                </ScrollViewer>
+            </materialDesign:Card>
+            <!--FM PRISONER-->
+        </StackPanel>
+    </materialDesign:Card>
+</Window>

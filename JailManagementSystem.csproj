@@ -1,0 +1,540 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A8BF159C-B783-48BB-ADFC-C7FC764C923C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>JailManagementSystem</RootNamespace>
+    <AssemblyName>JailManagementSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Emgu.CV, Version=2.2.1.1150, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\FaceRecProOV\bin\Debug\Emgu.CV.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.UI, Version=2.2.1.1150, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\FaceRecProOV\bin\Debug\Emgu.CV.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.Util, Version=2.2.1.1150, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\FaceRecProOV\bin\Debug\Emgu.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.1.3\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.4.1.1101, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.4.1.1101\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.WinForms.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="MsgBox, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dirkster.MsgBox.1.4.2\lib\net451\MsgBox.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UserNotification, Version=1.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dirkster.UserNotifications.1.3.1\lib\net451\UserNotification.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="addescort.xaml.cs">
+      <DependentUpon>addescort.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="jmsDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>jmsDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="jmsDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>jmsDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="jmsDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>jmsDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="jmsDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>jmsDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="prisonerfacerecog.xaml.cs">
+      <DependentUpon>prisonerfacerecog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="reports\bailreports.xaml.cs">
+      <DependentUpon>bailreports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="utilities\archive.xaml.cs">
+      <DependentUpon>archive.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="utilities\audit.xaml.cs">
+      <DependentUpon>audit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="bailinfo.xaml.cs">
+      <DependentUpon>bailinfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="casemain.xaml.cs">
+      <DependentUpon>casemain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="jmsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>jmsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="reports\casesreports.xaml.cs">
+      <DependentUpon>casesreports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="reports\cellstatusreport.xaml.cs">
+      <DependentUpon>cellstatusreport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="reports\hearingreports.xaml.cs">
+      <DependentUpon>hearingreports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="reports\inmatereports.xaml.cs">
+      <DependentUpon>inmatereports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="objects\escortClass.cs" />
+    <Compile Include="escort.xaml.cs">
+      <DependentUpon>escort.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="hearingschedule.xaml.cs">
+      <DependentUpon>hearingschedule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="objects\audittrail.cs" />
+    <Compile Include="objects\bail.cs" />
+    <Compile Include="cellinfo.xaml.cs">
+      <DependentUpon>cellinfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="cellmain.xaml.cs">
+      <DependentUpon>cellmain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="loading.xaml.cs">
+      <DependentUpon>loading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="objects\caseregistration.cs" />
+    <Compile Include="objects\cell.cs" />
+    <Compile Include="objects\hearing.cs" />
+    <Compile Include="objects\jailofficers.cs" />
+    <Compile Include="objects\parchive.cs" />
+    <Compile Include="objects\prisoner.cs" />
+    <Compile Include="objects\restore.cs" />
+    <Compile Include="objects\transfer.cs" />
+    <Compile Include="objects\visitors.cs" />
+    <Compile Include="objects\visitor_archive.cs" />
+    <Compile Include="objects\Warden.cs" />
+    <Compile Include="prisonermain.xaml.cs">
+      <DependentUpon>prisonermain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="prisonerupdate.xaml.cs">
+      <DependentUpon>prisonerupdate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="register.xaml.cs">
+      <DependentUpon>register.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="reports\officerreport.xaml.cs">
+      <DependentUpon>officerreport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="reports\prisonerreports.xaml.cs">
+      <DependentUpon>prisonerreports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="reports\visitorReports.xaml.cs">
+      <DependentUpon>visitorReports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SqlDbConnection.cs" />
+    <Compile Include="utilities\backup.xaml.cs">
+      <DependentUpon>backup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="visitor\visitoradd.xaml.cs">
+      <DependentUpon>visitoradd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="visitor\visitormain.xaml.cs">
+      <DependentUpon>visitormain.xaml</DependentUpon>
+    </Compile>
+    <Page Include="addescort.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="prisonerfacerecog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="reports\bailreports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="utilities\archive.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="utilities\audit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="bailinfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="casemain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="cellinfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="cellmain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="dashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="escort.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="hearingschedule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="reports\casesreports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="reports\cellstatusreport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="reports\hearingreports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="reports\inmatereports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="loading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="dashboard.xaml.cs">
+      <DependentUpon>dashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="prisonerFM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="prisonermain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="prisonerupdate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="register.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="reports\officerreport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="reports\prisonerreports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="reports\visitorReports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="utilities\backup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="visitor\visitoradd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="visitor\visitormain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="prisonerFM.xaml.cs">
+      <DependentUpon>prisonerFM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reports\bailedreports.rdlc" />
+    <EmbeddedResource Include="reports\casereports.rdlc" />
+    <EmbeddedResource Include="reports\cellstatus.rdlc" />
+    <EmbeddedResource Include="reports\hearingReport.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reports\inmateIndividualReport.rdlc" />
+    <EmbeddedResource Include="reports\officerreport.rdlc" />
+    <EmbeddedResource Include="reports\prisonerIndividual.rdlc" />
+    <EmbeddedResource Include="reports\prisonerSummary.rdlc" />
+    <EmbeddedResource Include="reports\visitorReports.rdlc" />
+    <None Include="jmsDataSet.xsc">
+      <DependentUpon>jmsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="jmsDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>jmsDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="jmsDataSet.xss">
+      <DependentUpon>jmsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="jmsDataSet1.xsc">
+      <DependentUpon>jmsDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="jmsDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>jmsDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="jmsDataSet1.xss">
+      <DependentUpon>jmsDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="jmsDataSet2.xsc">
+      <DependentUpon>jmsDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="jmsDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>jmsDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="jmsDataSet2.xss">
+      <DependentUpon>jmsDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="jmsDataSet3.xsc">
+      <DependentUpon>jmsDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="jmsDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>jmsDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="jmsDataSet3.xss">
+      <DependentUpon>jmsDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="jmsDataSet4.xsc">
+      <DependentUpon>jmsDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="jmsDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>jmsDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="jmsDataSet4.xss">
+      <DependentUpon>jmsDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\App.datasource" />
+    <None Include="Properties\DataSources\archive.datasource" />
+    <None Include="Properties\DataSources\audit.datasource" />
+    <None Include="Properties\DataSources\bail.datasource" />
+    <None Include="Properties\DataSources\bailinfo.datasource" />
+    <None Include="Properties\DataSources\casemain.datasource" />
+    <None Include="Properties\DataSources\cellinfo.datasource" />
+    <None Include="Properties\DataSources\cellmain.datasource" />
+    <None Include="Properties\DataSources\dashboard.datasource" />
+    <None Include="Properties\DataSources\escort.datasource" />
+    <None Include="Properties\DataSources\hearingschedule.datasource" />
+    <None Include="Properties\DataSources\JailManagementSystem.objects.audittrail.datasource" />
+    <None Include="Properties\DataSources\JailManagementSystem.objects.caseregistration.datasource" />
+    <None Include="Properties\DataSources\JailManagementSystem.objects.cell.datasource" />
+    <None Include="Properties\DataSources\JailManagementSystem.objects.escort.datasource" />
+    <None Include="Properties\DataSources\JailManagementSystem.objects.hearing.datasource" />
+    <None Include="Properties\DataSources\JailManagementSystem.objects.jailofficers.datasource" />
+    <None Include="Properties\DataSources\JailManagementSystem.objects.parchive.datasource" />
+    <None Include="Properties\DataSources\JailManagementSystem.objects.prisoner.datasource" />
+    <None Include="Properties\DataSources\JailManagementSystem.objects.restore.datasource" />
+    <None Include="Properties\DataSources\JailManagementSystem.objects.transfer.datasource" />
+    <None Include="Properties\DataSources\JailManagementSystem.objects.visitors.datasource" />
+    <None Include="Properties\DataSources\JailManagementSystem.objects.visitor_archive.datasource" />
+    <None Include="Properties\DataSources\JailManagementSystem.objects.Warden.datasource" />
+    <None Include="Properties\DataSources\JailManagementSystem.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\JailManagementSystem.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\JailManagementSystem.visitor.visitoradd.datasource" />
+    <None Include="Properties\DataSources\JailManagementSystem.visitor.visitormain.datasource" />
+    <None Include="Properties\DataSources\loading.datasource" />
+    <None Include="Properties\DataSources\MainWindow.datasource" />
+    <None Include="Properties\DataSources\prisonerFM.datasource" />
+    <None Include="Properties\DataSources\prisonermain.datasource" />
+    <None Include="Properties\DataSources\prisonerupdate.datasource" />
+    <None Include="Properties\DataSources\prisoner_report.datasource" />
+    <None Include="Properties\DataSources\register.datasource" />
+    <None Include="Properties\DataSources\SqlDbConnection.datasource" />
+    <None Include="Properties\DataSources\varchive.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\jaillogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\inmate.png" />
+    <Resource Include="images\warden.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\camera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\case.png" />
+    <Resource Include="images\cell.png" />
+    <Resource Include="images\prisoner.png" />
+    <Resource Include="images\visitor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\jailofficer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\policeescort.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\admin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="transactions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\cases.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\trialcourts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\jquery.timepicker.css" />
+    <Resource Include="images\attorney.png" />
+    <Content Include="Scripts\jquery-1.7-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.7.js" />
+    <Content Include="Scripts\jquery-1.7.min.js" />
+    <Content Include="Scripts\jquery.timepicker.js" />
+    <Content Include="Scripts\jquery.timepicker.min.js" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

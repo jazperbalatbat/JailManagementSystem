@@ -1,0 +1,193 @@
+﻿<Window x:Class="JailManagementSystem.prisonerFM"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JailManagementSystem"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{StaticResource MaterialDesignFont}"
+        mc:Ignorable="d"
+        Title="prisonerFM" Height="590" Width="1000" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth2">
+    <StackPanel>
+
+        <Button Background="{x:Null}" Margin="950,5,0,-15" Padding="-20" Click="Button_Click" Width="42">
+            <materialDesign:PackIcon Kind="Close"/>
+        </Button>
+        <!--FM PRISONER-->
+    <materialDesign:Card Padding="5" Margin="20">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" >
+                <StackPanel Margin="10">
+                    <TextBlock Grid.Column="0" Text="ADD PRISONER" FontWeight="Bold" FontSize="35"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="images/prisoner.png" Height="90" Margin="10 0 0 0"/>
+                    <!--<Button Margin="0 70 0 0" Width="27" Height="21">
+                <Button.Background>
+                    <ImageBrush ImageSource="images/camera.png"/>
+                </Button.Background>
+            </Button>-->
+                    <Button  Grid.Column="1" Click="Button_Click" Margin="0 70 0 0" Background="Transparent" Width="27" Height="21" Padding="-10">
+                        <materialDesign:PackIcon Kind="Camcorder"/>
+                    </Button>
+                    <TextBox Margin="10 63 100 0" Width="160.5" Height="21" IsEnabled="False"/>
+                    <TextBox Margin="-90 63 100 0" Width="160.5" Height="21" IsEnabled="False"/>
+                </StackPanel>
+
+                <!--id and birthdate-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="ID" Margin="5,5,108,5"/>
+                    <TextBox x:Name="id" Grid.Column="1" Margin="5 5 5 5" IsEnabled="False"/>
+                    <TextBlock Grid.Column="2" Text="BIRTHDATE" Margin="5 5 5 5"/>
+                    <DatePicker x:Name="birthdate" Grid.Column="3" Margin="5 5 5 5"/>
+                </Grid>
+                <!--id and birthdate-->
+
+                <!--firstname and middlename-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="FIRST NAME" Margin="5,5,18,5"/>
+                    <TextBox x:Name="firstname" Grid.Column="1" Margin="5 5 5 5"/>
+                    <TextBlock Grid.Column="2" Text="MIDDLE NAME" Margin="5 5 5 5"/>
+                    <TextBox x:Name="middlename" Grid.Column="3" Margin="5 5 5 5"/>
+                </Grid>
+                <!--firstname and middlename-->
+
+                <!--lastname and address-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="LAST NAME" Margin="5,5,18,5"/>
+                    <TextBox x:Name="lastname" Grid.Column="1" Margin="5 5 5 5"/>
+                    <TextBlock Grid.Column="2" Text="ADDRESS" Margin="5 5 5 5"/>
+                    <TextBox x:Name="address" Grid.Column="3" Margin="5 5 5 5"/>
+                </Grid>
+                <!--lastname and address-->
+
+                <!--AGE AND GENDER-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="AGE" Margin="5,5,18,5"/>
+                    <TextBox x:Name="age" Grid.Column="1" Margin="5 5 5 5"/>
+                    <TextBlock Grid.Column="2" Text="GENDER" Margin="5 5 5 5"/>
+                    <ComboBox SelectedValuePath="Content" x:Name="gender" Grid.Column="3" Margin="5 5 5 5">
+                                <ComboBoxItem Content="MALE"/>
+                                <ComboBoxItem Content="FEMALE"/>
+                            </ComboBox>
+                </Grid>
+                <!--AGE AND GENDER-->
+
+                <!--HEIGHT AND WEIGHT-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="WEIGHT" Margin="5,5,18,5"/>
+                    <TextBox x:Name="weight" Grid.Column="1" Margin="5 5 5 5"/>
+                    <TextBlock Grid.Column="2" Text="HEIGHT" Margin="5 5 5 5"/>
+                    <TextBox x:Name="height" Grid.Column="3" Margin="5 5 5 5"/>
+                </Grid>
+                <!--HEIGHT AND WEIGHT-->
+
+                <!--CITIZENSHIP AND RELGION-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="CITIZENSHIP" Margin="5,5,18,5"/>
+                    <TextBox x:Name="citizenship" Grid.Column="1" Margin="5 5 5 5"/>
+                    <TextBlock Grid.Column="2" Text="RELIGION" Margin="5 5 5 5"/>
+                    <TextBox x:Name="religion" Grid.Column="3" Margin="5 5 5 5"/>
+                </Grid>
+                <!--CITIZENSHIP AND RELGION-->
+
+                <!--DATE IN AND CIVIL STATUS -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="DATE IN" Margin="5,5,18,5"/>
+                    <DatePicker x:Name="datein" Grid.Column="1" Margin="5 5 5 5"/>
+                    <TextBlock Grid.Column="2" Text="CIVIL STATUS" Margin="5,5,18,5"/>
+                            <ComboBox SelectedValuePath="Content" x:Name="civilstatus" Grid.Column="3" Margin="5 5 5 5">
+                                <ComboBoxItem Content="MARRIED"/>
+                                <ComboBoxItem Content =" WIDOWED"/>
+                                <ComboBoxItem Content="SEPARATED"/>
+                                <ComboBoxItem Content="DIVORCED"/>
+                                <ComboBoxItem Content="SINGLE"/>
+                            </ComboBox>
+                </Grid>
+                <!--DATE IN AND CIVIL STATUS-->
+
+                <!--JAIL STATUS-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="JAIL STATUS" Margin="5,5,18,5"/>
+                    <ComboBox SelectedValuePath="Content" x:Name="jailstatus" Grid.Column="1" Margin="5 5 5 5">
+                                <ComboBoxItem Content="waiting for trial"/>
+                                <ComboBoxItem Content="sentenced"/>
+                                <ComboBoxItem Content="released"/>
+                                <ComboBoxItem Content="deceased"/>
+                    </ComboBox>
+                </Grid>
+                <!--JAIL STATUS-->
+
+                <!-- ADD EDIT DELETE CANCEL BUTTON-->
+                <Grid Margin="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="1*" />
+
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="add_prisoner" Grid.Column="0" Content="ADD" FontSize="15" FontWeight="Bold" Click="fmprisoner_b_add_Click" Width="200" Margin="506,0,6,0" VerticalAlignment="Top"/>
+                    <Button x:Name="add_cancel_prisoner" Grid.Column="1" Content="CANCEL"  FontSize="15" FontWeight="Bold" Click="fmprisoner_b_cancel_Click"/>
+                </Grid>
+                <!-- ADD EDIT DELETE CANCEL BUTTON-->
+
+            </StackPanel>
+        </ScrollViewer>
+    </materialDesign:Card>
+    <!--FM PRISONER-->
+    </StackPanel>
+    </materialDesign:Card>
+</Window>

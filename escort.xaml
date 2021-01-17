@@ -1,0 +1,219 @@
+﻿<Window x:Class="JailManagementSystem.escort"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JailManagementSystem"
+        mc:Ignorable="d"
+            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{StaticResource MaterialDesignFont}"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Loaded="Window_Loaded"
+
+        Title="escort" Height="775" Width="1370" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+
+
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Storyboard x:Key="menuopen">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="gridmenu">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.25" Value="700"/>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="menuclose">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="gridmenu">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="700"/>
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.25" Value="0"/>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <StackPanel>
+        <Button Background="{x:Null}" Margin="1315,5,5,0" Padding="-20" Click="Button_Click_3">
+            <materialDesign:PackIcon Kind="Close"/>
+        </Button>
+        <!--prison panel-->
+
+        <!--main panel prisoner-->
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" >
+            <StackPanel Margin="20" Width="1340" x:Name="panel_prisoner" Orientation="Vertical" Visibility="{Binding ElementName=b_prisoner, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" >
+
+                <StackPanel.Background>
+                    <ImageBrush/>
+                </StackPanel.Background>
+
+                <!--PRISONER ADD DELETE SEARCH-->
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="288*" />
+                        <ColumnDefinition Width="47*"/>
+                        <ColumnDefinition Width="335*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="ESCORTS" FontWeight="Bold" FontSize="35" Margin="30,26,390,-6"/>
+                    <!-- ADD AND DELETE BUTTONS !-->
+                    <Grid Margin="221,0,0,0" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+
+                        </Grid.ColumnDefinitions>
+
+                        <Button Width="175" Content="ADD" FontSize="22" FontWeight="Bold" Margin="0,30,0,0" Cursor="Hand" Click="addescort_Click" Grid.ColumnSpan="2" HorizontalAlignment="Left" Grid.Column="1"/>
+
+                        <Button x:Name="delete_escort" Width="175"  Grid.Column="2" Content="DELETE" FontSize="22" FontWeight="Bold" Margin="57,30,-83,0" Click="Button_Click_1" Visibility="Hidden"/>
+                    </Grid>
+                    <!-- ADD AND DELETE BUTTONS !-->
+                    <TextBlock Grid.Column="2" Text="SEARCH:" Margin="150,30,275,0" FontSize="20"/>
+                    <TextBox x:Name="tb_escort"  Grid.Column="2" Margin="240,20,90,5" TextChanged="tb_escort_TextChanged" />
+                    <Button ToolTip="Hearing Schedule" Click="Button_Click" Height="Auto" Background="Transparent" Margin="221,10,261,-10">
+                        <materialDesign:PackIcon Kind="CalendarClock" Width="40" Height="30"/>
+                    </Button>
+                </Grid>
+
+                <!--PRISONER ADD DELETE SEARCH-->
+
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--DATAS OF ALL PRISONER-->
+                    <DataGrid  x:Name="datagrid_escort" SelectionChanged="datagrid_escort_SelectionChanged" MouseDoubleClick="datagrid_escort_MouseDoubleClick" Grid.ColumnSpan="2" Height="525" Margin="20">
+                    </DataGrid>
+                    <!--DATAS OF ALL PRISONER-->
+                    <!--update PRISONER-->
+                    <Grid x:Name="edit" Visibility="Hidden" Height="525" Margin="20" Grid.ColumnSpan="3" Background="Transparent">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+                            <materialDesign:Card Padding="40" Margin="0">
+                                <StackPanel x:Name="update_panel" >
+                                    <StackPanel.Background>
+                                        <ImageBrush/>
+                                    </StackPanel.Background>
+
+                                    <TextBlock Grid.Column="0" Text="UPDATE PRISONER" FontWeight="Bold" FontSize="35"/>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="images/policeescort.png" Height="90" Margin="10 0 0 0"/>
+                                        <Button Padding="-10" Grid.Column="1" Click="Button_Click" Margin="0 70 0 0" Height="Auto" Background="Transparent" Width="39">
+                                            <materialDesign:PackIcon Kind="Camcorder" Width="27" Height="21"/>
+                                        </Button>
+                                        <TextBox Margin="10 63 100 0" Width="160.5" Height="21" IsEnabled="False"/>
+                                        <TextBox Margin="-90 63 100 0" Width="160.5" Height="21" IsEnabled="False"/>
+                                    </StackPanel>
+
+                                    <!--id-->
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="ID" Margin="5,5,108,5"/>
+                                        <TextBox x:Name="id" Grid.Column="1" Margin="5 5 5 5"/>
+                                    </Grid>
+                                    <!--id-->
+
+
+                                    <!--firstname and middlename-->
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="FIRST NAME" Margin="5,5,18,5"/>
+                                        <TextBox x:Name="firstname" Grid.Column="1" Margin="5 5 5 5"/>
+                                        <TextBlock Grid.Column="2" Text="LAST NAME" Margin="5 5 5 5"/>
+                                        <TextBox x:Name="lastname" Grid.Column="3" Margin="5 5 5 5"/>
+                                    </Grid>
+                                    <!--firstname and middlename-->
+
+                                    <!--lastname and address-->
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="POSITION" Margin="5,5,18,5"/>
+                                        <TextBox x:Name="position" Grid.Column="1" Margin="5 5 5 5"/>
+
+                                    </Grid>
+                                    <!--lastname and address-->
+
+                                    <!-- UPDATE AND CANCEL BUTTON | TOOLTRAY-->
+                                    <Grid Margin="0 0 0 0">
+
+                                        <Separator/>
+                                        <ToolBarTray>
+
+                                            <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
+                                                <TextBlock Text="INMATE TO ESCORT" Margin="0 0 20 0" VerticalAlignment="Center" FontSize="17" FontWeight="Bold"/>
+                                                <materialDesign:PopupBox Height="100" ToolTip="inmate to escort">
+                                                    <materialDesign:PopupBox.ToggleContent>
+                                                        <materialDesign:PackIcon Kind="AccountPlus" Width="40" Height="29" Foreground="White" />
+                                                    </materialDesign:PopupBox.ToggleContent>
+                                                    <StackPanel>
+                                                        <DataGrid x:Name="datagrid_escorts" Grid.ColumnSpan="3" Height="525" Margin="20" SelectionChanged="datagrid_escorts_SelectionChanged">
+                                                            <!-- MouseDoubleClick=""-->
+                                                        </DataGrid>
+
+                                                    </StackPanel>
+
+
+                                                </materialDesign:PopupBox>
+
+                                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                    <TextBlock x:Name="p_id" Visibility="Hidden" Margin="0 0 5 0"/>
+                                                    <TextBlock x:Name="p_lastname" Visibility="Hidden" Margin="0 0 5 0"/>
+                                                    <TextBlock x:Name="p_firstname" Visibility="Hidden" Margin="0 0 5 0"/>
+                                                    <TextBlock x:Name="p_middlename" Visibility="Hidden"/>
+                                                    <TextBlock x:Name="p_hearingdate" Visibility="Hidden"/>
+                                                    <TextBlock x:Name="p_hearingtime" Visibility="Hidden"/>
+                                                </StackPanel>
+                                            </ToolBar>
+                                        </ToolBarTray>
+
+                                        <Button Click="update_Click" x:Name="update_visitor" Grid.Column="0" Width="200" Margin="530 0 0 0" Content="UPDATE" FontSize="15" FontWeight="Bold" Foreground="White"/>
+                                        <Button Click="Button_Click_2" Grid.Column="1" Width="200" Margin="980 0 0 0" Content="CANCEL"  FontSize="15" FontWeight="Bold" Foreground="White"/>
+
+
+                                    </Grid>
+                                    <!-- UPDATE AND CANCEL BUTTON-->
+
+
+                                </StackPanel>
+                            </materialDesign:Card>
+                        </ScrollViewer>
+
+                    </Grid>
+                    <!--update PRISONER-->
+                </Grid>
+
+
+
+
+            </StackPanel>
+        </ScrollViewer>
+        <!--main panel prisoner-->
+
+        <!--prison panel-->
+    </StackPanel>
+</Window>
